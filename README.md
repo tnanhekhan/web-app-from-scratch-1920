@@ -1,7 +1,5 @@
 # Title
-
-linkToLiveDemo? review (assignment): assignGrade (1);
-## Introduction
+### Introduction
 ## Table of Contents
 ## Installation
 ## Features
