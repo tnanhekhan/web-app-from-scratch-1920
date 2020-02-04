@@ -5,14 +5,14 @@ available on them.
 
 // TODO: Insert Poster
 ## Table of Contents
-* [Live Demo](#Live Demo)
+* [Live Demo](#Live-Demo)
 * [Installation](#Installation)
 * [Features](#Features)
 * [API](#API)
 * [Diagrams](#Diagrams)
-    * [Actor Diagram](#Actor Diagram)
-    * [Interaction Diagram](#Interaction Diagram)
-* [Feature Wishlist](#Feature Wishlist)
+    * [Actor Diagram](#Actor-Diagram)
+    * [Interaction Diagram](#Interaction-Diagram)
+* [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
 
 
