@@ -53,14 +53,13 @@ function getPlayersByTeamName(teamName) {
     return makeApiCall(url, params);
 }
 
-function makeApiCall(url, params) {
-    return fetch(url + params)
-        .then(response => {
-            return response.json()
-        })
-        .catch(error => {
-            console.log(`Something went wrong: ${error}`);
-        });
+async function makeApiCall(url, params) {
+    try {
+        let response = await fetch(url + params);
+        return response.json()
+    } catch (error) {
+        console.log(`Something went wrong: ${error}`);
+    }
 }
 
 // endregion
