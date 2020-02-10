@@ -29,9 +29,9 @@ folder with your Text editor, IDE or browser of choice.
 [Link to the API](https://www.thesportsdb.com/)
 ## Diagrams
 ### Actor Diagram
-// TODO
+![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
-// TODO
+![Interaction Diagram](InteractionDiagram.png)
 ## Feature Wishlist
 //TODO 
 ## License
