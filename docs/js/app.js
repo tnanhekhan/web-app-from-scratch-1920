@@ -1,10 +1,20 @@
-import * as Routie from './modules/routie.js'
+"use strict";
+import * as Routie from './vendor/routie.js'
 
 init();
 
 routie({
     'team/:id': id => {
-        console.log(id)
+        getTeamById(id)
+            .then(value => {
+                console.log(value);
+                value.teams.map(team => {
+                    document.title = team.strTeam;
+                })
+            })
+    },
+    '': () => {
+        document.title = "Football Webapp";
     }
 });
 
@@ -16,6 +26,12 @@ function init() {
             updateTeams(event)
         }, timeout)
     });
+
+    document.getElementById("home").onclick = () => {
+        document.getElementById("teams").innerHTML = "";
+        teamInput.value = "";
+        routie('');
+    }
 }
 
 // region Callbacks
@@ -59,6 +75,12 @@ function getTeamByTeamName(teamName) {
 function getPlayersByTeamName(teamName) {
     let endpoint = "searchplayers.php";
     let params = "?t=" + teamName;
+    return makeApiCall(endpoint, params);
+}
+
+function getTeamById(teamId) {
+    let endpoint = "lookupteam.php";
+    let params = "?id=" + teamId;
     return makeApiCall(endpoint, params);
 }
 
