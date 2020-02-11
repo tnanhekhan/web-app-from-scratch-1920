@@ -31,7 +31,25 @@ folder with your Text editor, IDE or browser of choice.
 * Find the latest played matches of any team!
 * Find the upcoming matches of your team!
 ## API
-[Link to the API](https://www.thesportsdb.com/)
+The api this project uses is [TheSportsDB](https://www.thesportsdb.com/). This API is 
+an open, crowd-sourced database of sports artwork and metadata. This API has no request limits.
+Here's an example of a result from the endpoint  ```lookupteam.php?``` with the url parameter ```id=1333604```:
+```json
+{
+    "teams": [
+        {
+            "idTeam": "133604",
+            "strTeam": "Arsenal",
+            "strTeamShort": "Ars",
+            "strAlternate": "Gunners",
+            "intFormedYear": "1892",
+            "strSport": "Soccer",
+            "strLeague": "English Premier League",
+            "strStadium": "Emirates Stadium",
+        }
+    ]
+}
+```
 ## Diagrams
 ### Actor Diagram
 ![Action Diagram](ActorDiagram.png)
