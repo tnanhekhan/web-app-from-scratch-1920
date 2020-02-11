@@ -55,8 +55,11 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
 ![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
+## Design Patterns
+
 ## TODO
 - [ ] Add Poster in Introduction
+- [ ] Add Design Patterns
 ## Feature Wishlist
 - [ ] Show Team Detail Page
 - [ ] Show Player Detail Page
