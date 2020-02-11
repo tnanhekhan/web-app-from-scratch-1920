@@ -11,6 +11,7 @@ available on them.
 * [Diagrams](#Diagrams)
     * [Actor Diagram](#Actor-Diagram)
     * [Interaction Diagram](#Interaction-Diagram)
+* [TODO](#TODO)
 * [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
 
@@ -36,7 +37,7 @@ folder with your Text editor, IDE or browser of choice.
 ![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
-##TODO
+## TODO
 -[ ] Add Poster in Introduction
 ## Feature Wishlist
 -[ ] Show Game Detail Page
