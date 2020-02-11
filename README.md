@@ -40,6 +40,8 @@ folder with your Text editor, IDE or browser of choice.
 ## TODO
 - [ ] Add Poster in Introduction
 ## Feature Wishlist
+- [ ] Show Team Detail Page
+- [ ] Show Player Detail Page
 - [ ] Show Game Detail Page
 ## License
 [MIT License](https://opensource.org/licenses/MIT)
