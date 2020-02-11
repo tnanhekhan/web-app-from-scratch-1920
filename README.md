@@ -38,9 +38,8 @@ folder with your Text editor, IDE or browser of choice.
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
 ## TODO
--[ ] Add Poster in Introduction
+- [ ] Add Poster in Introduction
 ## Feature Wishlist
--[ ] Show Game Detail Page
-- [ ] 
+- [ ] Show Game Detail Page
 ## License
 [MIT License](https://opensource.org/licenses/MIT)
