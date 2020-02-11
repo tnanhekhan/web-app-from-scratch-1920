@@ -1,5 +1,12 @@
-"use strict";
+import * as Routie from './modules/routie.js'
+
 init();
+
+routie({
+    'team/:id': id => {
+        console.log(id)
+    }
+});
 
 function init() {
     const teamInput = document.getElementById("teamInput");
@@ -22,7 +29,7 @@ function updateTeams(e) {
             .then(value => {
                 let filteredTeams = value.teams.filter(team => team.strSport === "Soccer");
                 teamsView.innerHTML = filteredTeams.map(team => {
-                    return `<li><img src="${team.strTeamBadge}/preview" height="40dp" width="40dp"> ${team.strTeam}</li>`
+                    return `<li><img src="${team.strTeamBadge}/preview" height="40dp" width="40dp"><a href="#team/${team.idTeam}"> ${team.strTeam}</a></li>`
                 }).join("");
             })
     }
