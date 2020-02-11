@@ -32,32 +32,33 @@ function updateTeams(e) {
 
 // region API calls
 function getLeagues() {
-    let url = "https://www.thesportsdb.com/api/v1/json/1/all_leagues.php";
+    let endpoint = "all_leagues.php";
     let params = "";
-    return makeApiCall(url, params);
+    return makeApiCall(endpoint, params);
 }
 
 function getLeagueDetailsById(leagueId) {
-    let url = "https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php";
+    let endpoint = "lookup_all_teams.php";
     let params = "?id=" + leagueId;
-    return makeApiCall(url, params);
+    return makeApiCall(endpoint, params);
 }
 
 function getTeamByTeamName(teamName) {
-    let url = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php";
+    let endpoint = "searchteams.php";
     let params = "?t=" + teamName;
-    return makeApiCall(url, params);
+    return makeApiCall(endpoint, params);
 }
 
 function getPlayersByTeamName(teamName) {
-    let url = "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php";
+    let endpoint = "searchplayers.php";
     let params = "?t=" + teamName;
-    return makeApiCall(url, params);
+    return makeApiCall(endpoint, params);
 }
 
-async function makeApiCall(url, params) {
+async function makeApiCall(endpoint, params) {
+    let baseUrl = "https://www.thesportsdb.com/api/v1/json/1/";
     try {
-        let response = await fetch(url + params);
+        let response = await fetch(baseUrl + endpoint + params);
         return response.json()
     } catch (error) {
         console.log(`Something went wrong: ${error}`);
