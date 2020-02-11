@@ -3,7 +3,6 @@
 This is a simple one-pager web app where you can see search up football teams and find any statistics
 available on them.
 
-// TODO: Insert Poster
 ## Table of Contents
 * [Live Demo](#Live-Demo)
 * [Installation](#Installation)
@@ -19,7 +18,12 @@ available on them.
 ## Live Demo
 [Here's a link to the live demo](https://tnanhekhan.github.io/web-app-from-scratch-1920/)
 ## Installation
-Clone this repo through the CLI or your favourite GIT client. Then open the index.html inside the **docs**
+Clone this repo through the CLI or your favourite GIT client.
+```
+https://github.com/tnanhekhan/web-app-from-scratch-1920.git
+```
+
+Then open the index.html inside the **docs**
 folder with your Text editor, IDE or browser of choice. 
 ## Features
 * Find any professional football team!
@@ -32,7 +36,10 @@ folder with your Text editor, IDE or browser of choice.
 ![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
+##TODO
+-[ ] Add Poster in Introduction
 ## Feature Wishlist
-//TODO 
+-[ ] Show Game Detail Page
+- [ ] 
 ## License
 [MIT License](https://opensource.org/licenses/MIT)
