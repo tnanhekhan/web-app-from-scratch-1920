@@ -11,6 +11,7 @@ available on them.
 * [Diagrams](#Diagrams)
     * [Actor Diagram](#Actor-Diagram)
     * [Interaction Diagram](#Interaction-Diagram)
+* [Design Patterns and Best Practices](#Design-Patterns-and-Best-Practices)
 * [TODO](#TODO)
 * [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
@@ -55,11 +56,11 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
 ![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
-## Design Patterns
+## Design Patterns and Best Practices
 
 ## TODO
 - [ ] Add Poster in Introduction
-- [ ] Add Design Patterns
+- [ ] Add Design Patterns & Best Practices
 ## Feature Wishlist
 - [ ] Show Team Detail Page
 - [ ] Show Player Detail Page
