@@ -1,13 +1,14 @@
+"use strict";
+
 function init() {
-    const leagueInput = document.getElementById("leagueInput");
-    let timeout = 750;
-    leagueInput.addEventListener("input", function (e) {
+    const teamInput = document.getElementById("teamInput");
+    let timeout = 0;
+    teamInput.addEventListener("input", function (e) {
         setTimeout(function () {
             updateTeams(e)
         }, timeout)
     });
 }
-
 
 // region Callbacks
 function updateTeams(e) {
