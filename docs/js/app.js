@@ -4,9 +4,9 @@ init();
 function init() {
     const teamInput = document.getElementById("teamInput");
     let timeout = 0;
-    teamInput.addEventListener("input", function (e) {
-        setTimeout(function () {
-            updateTeams(e)
+    teamInput.addEventListener("input", event => {
+        setTimeout(_ => {
+            updateTeams(event)
         }, timeout)
     });
 }
@@ -21,7 +21,7 @@ function updateTeams(e) {
         getTeamByTeamName(e.target.value.trim())
             .then(value => {
                 let filteredTeams = value.teams.filter(team => team.strSport === "Soccer");
-                teamsView.innerHTML = filteredTeams.map(function (team) {
+                teamsView.innerHTML = filteredTeams.map(team => {
                     return `<li><img src="${team.strTeamBadge}/preview" height="40dp" width="40dp"> ${team.strTeam}</li>`
                 }).join("");
             })
