@@ -1,4 +1,5 @@
 "use strict";
+init();
 
 function init() {
     const teamInput = document.getElementById("teamInput");
