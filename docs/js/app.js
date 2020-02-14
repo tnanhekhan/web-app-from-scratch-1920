@@ -45,9 +45,9 @@ function updateTeams(e) {
             .then(value => {
                 let filteredTeams = value.teams.filter(team => team.strSport === "Soccer");
                 teamsView.innerHTML = filteredTeams.map(team => {
-                    return `<li><img src="${team.strTeamBadge}/preview" height="40dp" width="40dp"><a href="#team/${team.idTeam}"> ${team.strTeam}</a></li>`
+                    return `<a href="#team/${team.idTeam}"><li class="teamCard"><img src="${team.strTeamBadge}/preview" height="50dp" width="50dp"> ${team.strTeam}</li></a>`
                 }).join("");
-            })
+            });
     }
 }
 
