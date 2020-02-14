@@ -1,5 +1,6 @@
 "use strict";
 import * as Routie from './vendor/routie.js'
+import * as Transparency from './vendor/transparency.js'
 
 init();
 
