@@ -6,7 +6,7 @@ body {
     color: red;
 }
 
-.teamItem, #teamDetail {
+.teamItem, #teamDetail, .match {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     margin: 8px;
@@ -37,7 +37,7 @@ body {
     align-items: center;
 }
 
-.teamDetailHeader{
+.teamDetailHeader, .teamScheduleHeader {
     padding: 16px;
 }
 
@@ -57,9 +57,37 @@ body {
     grid-area: 3 / 1 / 4 / 2;
 }
 
+.match {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    justify-items: center;
+    align-items: center;
+}
+
+.matchTeams {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.matchScores {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.matchDate {
+    grid-area: 1 / 5 / 2 / 6;
+    float: right;
+}
+
 a {
     color: black;
     text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
 }
 
 input {
@@ -75,6 +103,8 @@ input {
     background-size: 200px 100%;
     background-repeat: repeat;
     color: #0e6252;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 input:focus, input:valid {

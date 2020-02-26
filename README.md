@@ -1,4 +1,5 @@
-# Football WebApp (WIP)
+# Football WebApp
+![Poster](Poster.png)
 ### Introduction
 This is a simple one-pager web app where you can see search up football teams and find any statistics
 available on them.

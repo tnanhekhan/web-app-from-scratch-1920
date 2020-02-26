@@ -71,10 +71,15 @@ function route() {
                     document.title = teamDetail[0].name;
                     Transparency.render(teamDetailView, teamDetail, directives, null);
 
-                    const teamId= teamDetail[0].id;
+                    const teamId = teamDetail[0].id;
 
                     getLastFiveTeamEvents(teamId)
-                        .then(events =>{
+                        .then(events => {
+                            console.log(events)
+                        });
+
+                    getNextFiveTeamEvents(teamId)
+                        .then(events => {
                             console.log(events)
                         })
                 })
@@ -93,7 +98,7 @@ function init() {
     const errorMessage = document.getElementById("errorMessage");
     const teamDetailView = document.getElementById("teamDetail");
     const teamDetailHeader = document.getElementById("teamDetailHeader");
-    const timeout = 250;
+    const timeout = 0;
 
     // Hide teams on default, otherwise empty html template shows
     teamsView.style.display = 'none';
