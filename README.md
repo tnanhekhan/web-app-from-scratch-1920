@@ -1,5 +1,5 @@
 # Football WebApp
-![Poster](Poster.png)
+![Poster](poster.png)
 ### Introduction
 This is a simple one-pager web app where you can see search up football teams and find any statistics
 available on them.
