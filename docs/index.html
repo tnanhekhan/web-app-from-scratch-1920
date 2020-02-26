@@ -11,7 +11,34 @@
 <body>
 <button id="home">Home</button>
 <input placeholder="Team" id="teamInput" name="league">
-<ul id="teams" style="list-style-type:none;"></ul>
+<p id="errorMessage">Team not found!</p>
+<ul id="teams" style="list-style-type:none;">
+    <a class="teamRoute">
+        <li class="teamItem">
+            <img class="teamBadge" onerror="this.src='https://via.placeholder.com/50/000000/FFFFFF/?text=team';"
+                 height="50px" width="50px">
+            <p class="teamName"></p>
+        </li>
+    </a>
+</ul>
+
+<h2 id="teamDetailHeader">Team Information</h2>
+
+<div id="teamDetail">
+    <div class="teamDetailText">
+        <p class="teamDetailName">teamDetailName</p>
+        <p class="teamDetailLeague">teamDetailLeague</p>
+        <p class="teamDetailDescription">teamDetailDescription</p>
+    </div>
+    <img class="teamDetailBadge" src="https://via.placeholder.com/200/FFFFFF/000000?text=Team-Badge-Placeholder"
+         height="200px"
+         width="200px">
+    <img class="teamDetailKit" src="https://via.placeholder.com/200/FFFFFF/000000?text=Team-Kit-Placeholder"
+         height="200px"
+         width="200px">
+    <img class="teamDetailStadium" src="https://via.placeholder.com/200/FFFFFF/000000?text=Team-Stadium-Placeholder"
+         height="200px">
+</div>
 
 <script type="module" src="js/app.js"></script>
 </body>
