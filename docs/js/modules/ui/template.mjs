@@ -1,4 +1,4 @@
-import "../docs/js/libs/transparency.js";
+import "../../libs/transparency.js";
 
 /**
  * Renders the results of the team input query in overview with help from the transparency templating engine library
