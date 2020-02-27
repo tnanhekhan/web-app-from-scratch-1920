@@ -13,7 +13,7 @@ available on them.
     * [Actor Diagram](#Actor-Diagram)
     * [Interaction Diagram](#Interaction-Diagram)
 * [Built with](#Built-with)
-* [TODO](#TODO)
+* [Todo](#Todo)
 * [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
 
@@ -62,7 +62,7 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
 [Transparency](https://github.com/leonidas/transparency): Client-side templating engine  
 [Routie](http://projects.jga.me/routie/) Javascript hash routing library
 
-## TODO
+## Todo
 - [x] Add Poster in Introduction
 ## Feature Wishlist
 - [x] Show Team Detail Page
