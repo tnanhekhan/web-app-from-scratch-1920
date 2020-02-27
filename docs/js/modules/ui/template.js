@@ -1,9 +1,14 @@
 import * as ImportTransparency from '/docs/js/vendor/transparency.js'
 
-export function renderResults(filteredTeams) {
+/**
+ * Renders the results of the team input query in overview with help from the transparency templating engine library
+ * @param result The list of teams found that matches the team input query
+ */
+export function renderResults(result) {
     const teamsView = document.getElementById("teams");
 
-    let teams = filteredTeams.map(team => {
+    // Parses the result into an teams array which transparency can bind to the html
+    let teams = result.map(team => {
         return {
             teamName: team.strTeam,
             route: "#team/" + team.idTeam,
@@ -11,6 +16,7 @@ export function renderResults(filteredTeams) {
         }
     });
 
+    // Takes data from the teams array and binds into html element attributes
     let directives = {
         teamRoute: {
             href: function () {
@@ -23,13 +29,21 @@ export function renderResults(filteredTeams) {
             }
         }
     };
+
     Transparency.render(teamsView, teams, directives, null);
 }
 
-export function renderTeamDetail(teamInfo) {
+/**
+ * Renders the data of the selected team in overview with help from transparency
+ * and returns the team detail object for the router
+ * @param result the team detail info
+ * @returns the team detail object
+ */
+export function renderTeamDetail(result) {
     const teamDetailView = document.getElementById("teamDetail");
 
-    let teamDetail = teamInfo.teams.map(team => {
+    // Parses the result into an team detail object which transparency can bind to the html
+    let teamDetail = result.teams.map(team => {
         return {
             id: team.idTeam,
             name: team.strTeam,
@@ -42,6 +56,7 @@ export function renderTeamDetail(teamInfo) {
         }
     });
 
+    // Takes data from the team detail object and binds into html element attributes
     let directives = {
         teamDetailName: {
             text: function () {
@@ -81,6 +96,11 @@ export function renderTeamDetail(teamInfo) {
     return teamDetail;
 }
 
+/**
+ * Parses latest / next scheduled games of a team from the api to a schedule match object
+ * @param result latest / next scheduled games of a team
+ * @returns schedule match object
+ */
 export function parseScheduleMatches(result) {
     return {
         matchHomeTeam: result.strHomeTeam,
@@ -91,7 +111,45 @@ export function parseScheduleMatches(result) {
     }
 }
 
+/**
+ * Renders the team schedule with an array consisting of schedule match object
+ * @param scheduleArray array with the schedule of a team
+ */
 export function renderTeamSchedule(scheduleArray) {
     const teamSchedule = document.getElementById("teamSchedule");
     Transparency.render(teamSchedule, scheduleArray, null, null);
+}
+
+/**
+ * Show the error message in overview whenever the user entered a non-existing team
+ * @param show boolean whether to show the error message or not
+ */
+export function showErrorMessage(show) {
+    const teamsView = document.getElementById("teams");
+    const errorMessage = document.getElementById("errorMessage");
+
+    if (show) {
+        teamsView.style.display = "none";
+        errorMessage.style.display = 'block';
+    } else {
+        teamsView.style.display = "block";
+        errorMessage.style.display = 'none';
+    }
+}
+
+/**
+ * Show the overview
+ * @param show boolean whether to show the overview
+ */
+export function showOverview(show) {
+    const teamDetailView = document.getElementById("teamDetail");
+    const overview = document.getElementById("overview");
+
+    if (show) {
+        teamDetailView.style.display = "none";
+        overview.style.display = 'block';
+    } else {
+        teamDetailView.style.display = "block";
+        overview.style.display = 'none';
+    }
 }

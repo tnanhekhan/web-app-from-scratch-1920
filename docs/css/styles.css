@@ -43,7 +43,7 @@ ul {
     align-items: center;
 }
 
-.teamDetailHeader, .teamScheduleHeader {
+h3 {
     padding: 16px;
 }
 

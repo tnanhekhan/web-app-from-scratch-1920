@@ -12,6 +12,7 @@ available on them.
 * [Diagrams](#Diagrams)
     * [Actor Diagram](#Actor-Diagram)
     * [Interaction Diagram](#Interaction-Diagram)
+* [Built with](#Built-with)
 * [TODO](#TODO)
 * [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
@@ -56,6 +57,10 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
 ![Action Diagram](ActorDiagram.png)
 ### Interaction Diagram
 ![Interaction Diagram](InteractionDiagram.png)
+
+## Built with
+[Transparency](https://github.com/leonidas/transparency): Client-side templating engine  
+[Routie](http://projects.jga.me/routie/) Javascript hash routing library
 
 ## TODO
 - [x] Add Poster in Introduction
