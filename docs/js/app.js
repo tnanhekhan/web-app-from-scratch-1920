@@ -1,92 +1,47 @@
 "use strict";
+import * as TeamRepository from "./modules/data/team-repository.js";
+import * as Template from "./modules/ui/template.js";
 import * as ImportRoutie from './vendor/routie.js'
-import * as ImportTransparency from './vendor/transparency.js'
 
 init();
-route();
 
 function route() {
     const teamDetailView = document.getElementById("teamDetail");
-    const teamsView = document.getElementById("teams");
-    const teamInput = document.getElementById("teamInput");
-    const teamDetailHeader = document.getElementById("teamDetailHeader");
+    const overview = document.getElementById("overview");
 
     routie({
         'team/:id': id => {
-            getTeamById(id)
+            TeamRepository.getTeamDetailById(id)
                 .then(value => {
-                    teamsView.style.display = "none";
-                    teamDetailView.style.display = "grid";
-                    teamDetailHeader.style.display = "block";
-                    teamInput.style.display = "none";
+                    overview.style.display = "none";
+                    teamDetailView.style.display = "block";
 
-                    let teamDetail = value.teams.map(team => {
-                        return {
-                            id: team.idTeam,
-                            name: team.strTeam,
-                            league: team.strLeague,
-                            description: team.strDescriptionEN,
-                            badge: team.strTeamBadge,
-                            kit: team.strTeamJersey,
-                            stadiumName: team.strStadium,
-                            stadiumImage: team.strStadiumThumb,
-                        }
-                    });
-
-                    let directives = {
-                        teamDetailName: {
-                            text: function () {
-                                return this.name
-                            }
-                        },
-                        teamDetailLeague: {
-                            text: function () {
-                                return this.league
-                            }
-                        },
-                        teamDetailDescription: {
-                            text: function () {
-                                return this.description
-                            }
-                        },
-
-                        teamDetailBadge: {
-                            src: function () {
-                                return this.badge
-                            }
-                        },
-                        teamDetailKit: {
-                            src: function () {
-                                return this.kit
-                            }
-                        },
-
-                        teamDetailStadium: {
-                            src: function () {
-                                return this.stadiumImage
-                            }
-                        }
-                    };
+                    let teamDetail = Template.renderTeamDetail(value);
 
                     document.title = teamDetail[0].name;
-                    Transparency.render(teamDetailView, teamDetail, directives, null);
-
                     const teamId = teamDetail[0].id;
 
-                    getLastFiveTeamEvents(teamId)
-                        .then(events => {
-                            console.log(events)
-                        });
+                    TeamRepository.getLatestGames(teamId)
+                        .then(res => {
+                            let results = res.results.map(result => {
+                                return Template.parseScheduleMatches(result);
+                            });
 
-                    getNextFiveTeamEvents(teamId)
-                        .then(events => {
-                            console.log(events)
+                            TeamRepository.getUpcomingGames(teamId)
+                                .then(res => {
+                                    let events = res.events.map(result => {
+                                        return Template.parseScheduleMatches(result);
+                                    });
+
+                                    let scheduleArray = results.concat(events);
+                                    Template.renderTeamSchedule(scheduleArray);
+                                });
                         })
                 })
         },
         '': () => {
-            teamDetailHeader.style.display = "none";
-            teamInput.style.display = "block";
+            teamDetailView.style.display = "none";
+            overview.style.display = "block";
             document.title = "Football Webapp";
         }
     });
@@ -96,8 +51,8 @@ function init() {
     const teamsView = document.getElementById("teams");
     const teamInput = document.getElementById("teamInput");
     const errorMessage = document.getElementById("errorMessage");
-    const teamDetailView = document.getElementById("teamDetail");
-    const teamDetailHeader = document.getElementById("teamDetailHeader");
+    const teamDetail = document.getElementById("teamDetail");
+    const overview = document.getElementById("overview");
     const timeout = 0;
 
     // Hide teams on default, otherwise empty html template shows
@@ -105,14 +60,11 @@ function init() {
 
     errorMessage.style.display = 'none';
 
-    teamDetailView.style.display = "none";
+    teamDetail.style.display = "none";
 
-    teamDetailHeader.style.display = "none";
-
-    teamInput.style.display = "block";
+    overview.style.display = "block";
 
     teamInput.addEventListener("input", event => {
-        teamsView.style.display = 'block';
         setTimeout(_ => {
             if (event.target.value.trim() != null) {
                 updateTeams(event)
@@ -122,10 +74,12 @@ function init() {
 
     document.getElementById("home").onclick = () => {
         teamsView.style.display = 'none';
-        teamDetailView.style.display = "none";
+        teamDetail.style.display = "none";
         teamInput.value = "";
         routie('');
-    }
+    };
+
+    route();
 }
 
 // region Callbacks
@@ -134,34 +88,14 @@ function updateTeams(e) {
     const errorMessage = document.getElementById("errorMessage");
 
     if (e.target.value.trim() === "") teamsView.style.display = 'none';
-    getTeamByTeamName(e.target.value.trim())
+    TeamRepository.getTeamByTeamName(e.target.value.trim())
         .then(value => {
-            teamsView.style.display = "block";
+            teamsView.style.display = "none";
             errorMessage.style.display = 'none';
             try {
                 let filteredTeams = value.teams.filter(team => team.strSport === "Soccer");
-                let teams = filteredTeams.map(team => {
-                    return {
-                        teamName: team.strTeam,
-                        route: "#team/" + team.idTeam,
-                        badge: team.strTeamBadge + "/preview"
-                    }
-                });
-
-                let directives = {
-                    teamRoute: {
-                        href: function () {
-                            return this.route
-                        }
-                    },
-                    teamBadge: {
-                        src: function () {
-                            return this.badge
-                        }
-                    }
-                };
-
-                Transparency.render(teamsView, teams, directives, null);
+                teamsView.style.display = "block";
+                Template.renderResults(filteredTeams);
             } catch (error) {
                 if (error instanceof TypeError) {
                     teamsView.style.display = 'none';
@@ -169,61 +103,6 @@ function updateTeams(e) {
                 }
             }
         });
-}
-
-// endregion
-
-// region API calls
-function getLeagues() {
-    let endpoint = "all_leagues.php";
-    let params = "";
-    return makeApiCall(endpoint, params);
-}
-
-function getLeagueDetailsById(leagueId) {
-    let endpoint = "lookup_all_teams.php";
-    let params = "?id=" + leagueId;
-    return makeApiCall(endpoint, params);
-}
-
-function getTeamByTeamName(teamName) {
-    let endpoint = "searchteams.php";
-    let params = "?t=" + teamName;
-    return makeApiCall(endpoint, params);
-}
-
-function getPlayersByTeamName(teamName) {
-    let endpoint = "searchplayers.php";
-    let params = "?t=" + teamName;
-    return makeApiCall(endpoint, params);
-}
-
-function getTeamById(teamId) {
-    let endpoint = "lookupteam.php";
-    let params = "?id=" + teamId;
-    return makeApiCall(endpoint, params);
-}
-
-function getLastFiveTeamEvents(teamId) {
-    let endpoint = "eventslast.php";
-    let params = "?id=" + teamId;
-    return makeApiCall(endpoint, params);
-}
-
-function getNextFiveTeamEvents(teamId) {
-    let endpoint = "eventsnext.php";
-    let params = "?id=" + teamId;
-    return makeApiCall(endpoint, params);
-}
-
-async function makeApiCall(endpoint, params) {
-    let baseUrl = "https://www.thesportsdb.com/api/v1/json/1/";
-    try {
-        let response = await fetch(baseUrl + endpoint + params);
-        return response.json()
-    } catch (error) {
-        console.log(`Something went wrong: ${error}`);
-    }
 }
 
 // endregion

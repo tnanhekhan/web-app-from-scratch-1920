@@ -12,7 +12,6 @@ available on them.
 * [Diagrams](#Diagrams)
     * [Actor Diagram](#Actor-Diagram)
     * [Interaction Diagram](#Interaction-Diagram)
-* [Design Patterns and Best Practices](#Design-Patterns-and-Best-Practices)
 * [TODO](#TODO)
 * [Feature Wishlist](#Feature-Wishlist)
 * [License](#License)
