@@ -1,4 +1,4 @@
-import {makeApiCall} from "./api.js";
+import {makeApiCall} from "./api.mjs";
 
 /**
  *  Retrieves a sports team by teamName from TheSportsDB

@@ -47,7 +47,7 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
             "intFormedYear": "1892",
             "strSport": "Soccer",
             "strLeague": "English Premier League",
-            "strStadium": "Emirates Stadium",
+            "strStadium": "Emirates Stadium"
         }
     ]
 }

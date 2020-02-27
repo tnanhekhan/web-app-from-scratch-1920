@@ -1,4 +1,4 @@
-import {makeApiCall} from "./api";
+import {makeApiCall} from "./api.mjs";
 
 /**
  *  Retrieves an array of players from TheSportsDB

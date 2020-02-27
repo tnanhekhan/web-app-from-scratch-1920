@@ -1,7 +1,13 @@
-import * as TeamRepository from "/docs/js/modules/data/team-repository.js";
-import * as Template from "/docs/js/modules/ui/template.js";
+import {
+    renderTeamSchedule,
+    renderTeamDetail,
+    renderResults,
+    showOverview,
+    parseScheduleMatches,
+    showErrorMessage
+} from "../ui/template.mjs";
+import {getLatestGames, getTeamByTeamName, getTeamDetailById, getUpcomingGames} from "../data/team-repository.mjs";
 import * as ImportRoutie from '/docs/js/vendor/routie.js'
-
 
 /**
  * Initializes the hash routes with help of the Routie hash routing library
@@ -9,34 +15,34 @@ import * as ImportRoutie from '/docs/js/vendor/routie.js'
 export function initializeRoutes() {
     routie({
         'team/:id': id => {
-            TeamRepository.getTeamDetailById(id)
+            getTeamDetailById(id)
                 .then(value => {
-                    let teamDetail = Template.renderTeamDetail(value);
+                    let teamDetail = renderTeamDetail(value);
 
-                    Template.showOverview(false);
+                    showOverview(false);
                     document.title = teamDetail[0].name;
                     const teamId = teamDetail[0].id;
 
-                    TeamRepository.getLatestGames(teamId)
+                    getLatestGames(teamId)
                         .then(res => {
                             let results = res.results.map(result => {
-                                return Template.parseScheduleMatches(result);
+                                return parseScheduleMatches(result);
                             });
 
-                            TeamRepository.getUpcomingGames(teamId)
+                            getUpcomingGames(teamId)
                                 .then(res => {
                                     let events = res.events.map(result => {
-                                        return Template.parseScheduleMatches(result);
+                                        return parseScheduleMatches(result);
                                     });
                                     // Combines the result of the two Api calls into one array
                                     let scheduleArray = results.concat(events);
-                                    Template.renderTeamSchedule(scheduleArray);
+                                    renderTeamSchedule(scheduleArray);
                                 });
                         })
                 })
         },
         '': () => {
-            Template.showOverview(true);
+            showOverview(true);
             document.title = "Football Webapp";
         }
     });
@@ -66,17 +72,17 @@ export function prepareOverview() {
  * @param e Event which contains the team input query
  */
 export function updateSearchResults(e) {
-    TeamRepository.getTeamByTeamName(e.target.value.trim())
+    getTeamByTeamName(e.target.value.trim())
         .then(value => {
             // Hides error message in case an unknown team was filled in before
-            Template.showErrorMessage(false);
+            showErrorMessage(false);
             try {
                 // Filters teams by the sport "Soccer" and renders results with filtered teams
                 let filteredTeams = value.teams.filter(team => team.strSport === "Soccer");
-                Template.renderResults(filteredTeams);
+                renderResults(filteredTeams);
             } catch (error) {
                 if (error instanceof TypeError) {
-                    Template.showErrorMessage(true);
+                    showErrorMessage(true);
                 }
             }
         });

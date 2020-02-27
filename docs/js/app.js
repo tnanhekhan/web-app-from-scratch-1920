@@ -1,4 +1,4 @@
-import * as Router from "./modules/ui/router.js";
+import {initializeRoutes, prepareOverview, updateSearchResults} from "./modules/ui/router.mjs";
 
 init();
 
@@ -8,15 +8,15 @@ function init() {
     // Listens to team search input and updates results
     teamInput.addEventListener("input", event => {
         if (event.target.value.trim() != null) {
-            Router.updateSearchResults(event)
+            updateSearchResults(event)
         }
     });
 
     // Handles home button click to go to the overview
     document.getElementById("home").onclick = () => {
-        Router.prepareOverview();
+        prepareOverview();
     };
 
-    Router.initializeRoutes();
-    Router.prepareOverview()
+    initializeRoutes();
+    prepareOverview()
 }
