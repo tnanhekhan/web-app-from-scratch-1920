@@ -60,8 +60,8 @@ Here's an example of a result from the endpoint  ```lookupteam.php?``` with the 
 
 ## Built with
 [Transparency](https://github.com/leonidas/transparency): Client-side templating engine  
-[Routie](http://projects.jga.me/routie/) Javascript hash routing library
-[CSS Grid Generator](https://cssgrid-generator.netlify.com/)Helpful beginner tool for generating css grids  
+[Routie](http://projects.jga.me/routie/) Javascript hash routing library   
+[CSS Grid Generator](https://cssgrid-generator.netlify.com/) Helpful beginner tool for generating css grids  
 
 ## Todo
 - [x] Add Poster in Introduction
