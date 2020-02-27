@@ -7,7 +7,7 @@ import {
     showErrorMessage
 } from "../ui/template.mjs";
 import {getLatestGames, getTeamByTeamName, getTeamDetailById, getUpcomingGames} from "../data/team-repository.mjs";
-import * as ImportRoutie from '/docs/js/vendor/routie.js'
+import "/docs/js/libs/routie.js"
 
 /**
  * Initializes the hash routes with help of the Routie hash routing library
